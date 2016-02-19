@@ -1,0 +1,33 @@
+<div class="row off-top">
+  <div class="col-md-2">
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+        End-Point Type
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a ng-click="endpointType('get')">GET</a></li>
+        <li><a ng-click="endpointType('post')">POST</a></li>
+        <li><a ng-click="endpointType('delete')">DELETE</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <input type="text" placeholder="Function Name" class="form-control" ng-model="data.name">
+  </div>
+  <div class="col-md-2">
+    <input type="text" placeholder="Version" class="form-control" ng-model="data.versionNumber">
+  </div>
+</div>
+<div class="row off-top">
+  <div class="col-md-10 col-md-offset-1">
+    <div ui-ace="{
+  useWrapMode : true,
+  showGutter: true,
+  theme:'twilight',
+  mode: 'python'}" ng-model="data.code"></div>
+  </div>
+</div>
+<pre>
+{{data|json}}
+</pre>
