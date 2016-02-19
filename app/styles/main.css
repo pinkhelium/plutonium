@@ -9,6 +9,11 @@ body {
   padding: 0;
 }
 
+.brandImg{
+  width: 20%; /* you can use % */
+  height: auto;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

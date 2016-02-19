@@ -11,7 +11,7 @@ angular.module('plutoniumApp')
   .controller('NewCtrl', function ($scope,$http,$q) {
     
   	$scope.data = {
-
+  		endpointType: "Endpoint Type"
   	}
 
   	$scope.pauseDeploy = true;
@@ -31,9 +31,9 @@ angular.module('plutoniumApp')
   			url: endpoint,
   			data: $scope.data
   		}).then(function success(response){
-  			deferred.resolve(true);
-  		}, function error(response){
   			deferred.resolve(false);
+  		}, function error(response){
+  			deferred.resolve(true);
   		})
 
   		return deferred.promise;
