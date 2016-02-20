@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 app.listen(port);
 
 console.log("Server Running");
+console.log("***********************************************************************************");
 
 //app.use(express.static(__dirname + '/dist'));
 
@@ -42,6 +43,7 @@ app.post('/init', function(request,response){
 
 	init_spawn.on('close', (code) => {
 		console.log(`child process exited with code ${code}`);
+		console.log("***********************************************************************************");	
 		if(code==0){
 			response.send(0);
 		}
@@ -84,12 +86,31 @@ app.post('/function', function(request,response){
 
 			function_spawn.on('close', (code) => {
 				console.log(`child process exited with code ${code}`);
+				console.log("***********************************************************************************");
+
+				const checkbuild_spawn =  spawn('./scripts/checkbuild.sh', [project_name]);
+
+				checkbuild_spawn.stdout.on('data', (data) => {
+					console.log(`stdout: ${data}`);
+				});
+				
+				checkbuild_spawn.stderr.on('data', (data) => {
+					console.log(`stderr: ${data}`);
+				});
+
+				checkbuild_spawn.on('close', (code) => {
+					console.log(`child process exited with code ${code}`);
+					console.log("***********************************************************************************");	
+
+					if(code==0){
+						response.send(0);
+					}
+					else {
+						response.send(1);
+					}
+				});
 			});
 		}
 	}
-
 	createCodeFile();
-	
 })
-
-
