@@ -2,7 +2,7 @@ import sys, getopt, os
 
 def add_func(pn, acf, ucf, fn, mn, vn):
 	# Set file paths for reading and writing.
-	os.chdir("../projects/" + pn)
+	os.chdir("projects/" + pn)
 	# # main_project_file_path = + acf
 	# function_file_path = "~/Documents/pinkhelium/projects/" + pn + "/" + ucf
 
@@ -22,12 +22,12 @@ def add_func(pn, acf, ucf, fn, mn, vn):
 
 def main(argv):
 	# Define variables. Defining variables explicitly for easier readability.
-	# project_name = ''
-	# api_code_file = ''
-	# user_code_file = ''
-	# function_name = ''
-	# method_name = ''
-	# version_number = ''
+	project_name = ''
+	api_code_file = ''
+	user_code_file = ''
+	function_name = ''
+	method_name = ''
+	version_number = ''
 
 	# Error handling stuff with options. Just makes for elegant code. 
 	try:
