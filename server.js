@@ -55,32 +55,50 @@ app.post('/function', function(request,response){
 	//console.log(request.body);
 	var project_name = request.body.name;
 	var api_code_file = request.body.name;
-	var user_code_file = request.body.function_name + ".py"
-	var function_name = request.body.function_name
-	var method_type = request.body.method_type
-	var version_number = request.body.version_number
+	var user_code_file = request.body.function_name + ".py";
+	var function_name = request.body.function_name;
+	var method_type = request.body.method_type;
+	var version_number = request.body.version_number;
+	var user_code_file_content = request.body.code;
 
-	// console.log(project_name);
-	// console.log(project_repo_url);
-	const function_spawn = spawn('python3.4', ['/scripts/code.py', '-p', project_name, '-a',api_code_file,'-u', user_code_file, '-f',function_name, '-m',method_type, '-v',version_number]);
+	var createCodeFile = function(checkCode){
+		const create_codefile_spawn = spawn('./scripts/create_code_file.sh', [user_code_file_content, user_code_file]);
 
-	function_spawn.stdout.on('data', (data) => {
-		console.log(`stdout: ${data}`);
-	});
+		create_codefile_spawn.stdout.on('data', (data) => {
+			console.log(`stdout: ${data}`);
+		});
 
-	function_spawn.stderr.on('data', (data) => {
-		console.log(`stderr: ${data}`);
-	});
+		create_codefile_spawn.stderr.on('data', (data) => {
+			console.log(`stderr: ${data}`);
+		});
 
-	function_spawn.on('close', (code) => {
-		console.log(`child process exited with code ${code}`);
-		if(code==0){
-			response.send(0);
+		create_codefile_spawn.on('close', (code) => {
+			console.log(`child process exited with code ${code}`);
+		});
+	}
+
+	var checkCode = function(err, data){
+		if(err){
+			console.log("oopsies");
 		}
-		else {
-			response.send(1);
+		else{
+			const function_spawn = spawn('python3.4', ['/scripts/code.py', '-p', project_name, '-a',api_code_file,'-u', user_code_file, '-f',function_name, '-m',method_type, '-v',version_number]);
+
+			function_spawn.stdout.on('data', (data) => {
+				console.log(`stdout: ${data}`);
+			});
+
+			function_spawn.stderr.on('data', (data) => {
+				console.log(`stderr: ${data}`);
+			});
+
+			function_spawn.on('close', (code) => {
+				console.log(`child process exited with code ${code}`);
+			});
 		}
-	});
+		
+	}
+	
 })
 
 
