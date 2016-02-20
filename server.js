@@ -62,13 +62,8 @@ app.post('/function', function(request,response){
 	var version_number = request.body.version_number;
 	var user_code_file_content = request.body.code;
 
-	var createCodeFile = function(checkCode){
-		fs.writeFile(user_code_file, user_code_file_content, function(err){
-			if(err){
-				return console.log(err);
-			}
-			console.log("Created File");
-		})
+	var createCodeFile = function(){
+		fs.writeFile(user_code_file, user_code_file_content, checkCode)
 	}
 
 	var checkCode = function(err, data){
@@ -90,8 +85,9 @@ app.post('/function', function(request,response){
 				console.log(`child process exited with code ${code}`);
 			});
 		}
-		
 	}
+
+	createCodeFile();
 	
 })
 
