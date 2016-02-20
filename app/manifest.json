@@ -4,8 +4,18 @@
   "lang": "en-US",
   "icons": [
     {
-      "src": "images/logo_64.png",
-      "sizes": "64x63",
+      "src": "images/icon_128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon_64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon_32.png",
+      "sizes": "32x32",
       "type": "image/png"
     }
   ],
