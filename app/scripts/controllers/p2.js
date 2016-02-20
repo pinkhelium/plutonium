@@ -9,6 +9,7 @@
  */
 angular.module('plutoniumApp')
   .controller('P2Ctrl', function ($scope) {
+
     $scope.project = { 
         "name" : "vidserver",
         "documentation": {
@@ -43,5 +44,24 @@ angular.module('plutoniumApp')
                 }
             }
         }
+    };
+
+    $scope.showTable = false;
+    $scope.showNewFunction = false;
+    $scope.currentView = "empty";
+    $scope.currentContents = {};
+
+    $scope.changeView = function (what) {
+    	$scope.currentView = what;
+    	$scope.showNewFunction = false;
+    	$scope.showTable = true;
+    	$scope.currentContents = this.method;
+    };
+
+    $scope.newFunctionView = function (what) {
+    	$scope.currentView = what;
+    	$scope.showNewFunction = true;
+    	$scope.showTable = false;
+ 
     };
   });
