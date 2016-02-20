@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var cors = require('cors');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 
 var port = 8000;
 
@@ -62,19 +63,12 @@ app.post('/function', function(request,response){
 	var user_code_file_content = request.body.code;
 
 	var createCodeFile = function(checkCode){
-		const create_codefile_spawn = spawn('./scripts/create_code_file.sh', [user_code_file_content, user_code_file]);
-
-		create_codefile_spawn.stdout.on('data', (data) => {
-			console.log(`stdout: ${data}`);
-		});
-
-		create_codefile_spawn.stderr.on('data', (data) => {
-			console.log(`stderr: ${data}`);
-		});
-
-		create_codefile_spawn.on('close', (code) => {
-			console.log(`child process exited with code ${code}`);
-		});
+		fs.writeFile(user_code_file, function(err){
+			if(err){
+				return console.log(err);
+			}
+			console.log("Created File");
+		})
 	}
 
 	var checkCode = function(err, data){
