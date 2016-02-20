@@ -8,7 +8,7 @@
  * Controller of the plutoniumApp
  */
 angular.module('plutoniumApp')
-  .controller('NewCtrl', function ($scope,$http,$q) {
+  .controller('NewCtrl', function ($scope,$http,$q,ngToast) {
     
 
   	$scope.pauseDeploy = true;
@@ -18,10 +18,27 @@ angular.module('plutoniumApp')
   	};
 
   	$scope.buildFunction = function(){
+
   		var promise = $scope.sendData();
       promise.then(function(response){
         console.log(response);
         $scope.pauseDeploy = response;
+        if($scope.pauseDeploy){
+          ngToast.create({
+            className: 'danger',
+            content: 'Build Failed',
+            dismissOnClick: true,
+            dismissButton: true,
+          });
+        }
+        else{
+          ngToast.create({
+            className: 'success',
+            content: 'Build Succeeded',
+            dismissOnClick: true,
+            dismissButton: true,
+          });
+        }
         console.log($scope.pauseDeploy);
       })
   	};

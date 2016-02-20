@@ -17,7 +17,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.ace'
+    'ui.ace',
+    'ngToast'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -42,6 +43,12 @@ angular
         redirectTo: '/'
       });
   })
+  .config(['ngToastProvider', function(ngToast) {
+    ngToast.configure({
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center',
+    })
+  }])
   .directive("centered", function() {
   return {
     restrict : "ECA",
