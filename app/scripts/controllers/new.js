@@ -26,7 +26,7 @@ angular.module('plutoniumApp')
   		console.log($scope.data)
   		$http({
   			method: 'POST',
-  			url: 'http://localhost:8000/build',
+  			url: 'http://localhost:8000/function',
   			data: $scope.data
   		}).then(function success(response){
   			deferred.resolve(false);
