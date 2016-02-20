@@ -1,7 +1,7 @@
 #! /bin/bash
 pn=$1
 acf=$1
-cd ../projects/$1
+cd projects/$1
 
 hug -f "$acf.py" &
 sleep .5
