@@ -19,16 +19,16 @@ angular.module('plutoniumApp')
   		$scope.data.endpointType = type;
   	}
 
-  	$scope.build = function(){
+  	$scope.buildFunction = function(){
   		$scope.pauseDeploy = $scope.sendData();
   	}
 
   	$scope.sendData = function(){
   		var deferred = $q.defer();
-
+  		console.log($scope.data)
   		$http({
   			method: 'POST',
-  			url: endpoint,
+  			url: 'http://localhost:8000/build',
   			data: $scope.data
   		}).then(function success(response){
   			deferred.resolve(false);

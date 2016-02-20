@@ -2,6 +2,8 @@
   "name": "plutonium",
   "version": "0.0.0",
   "dependencies": {
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
     "grunt-karma": "^0.12.1",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.21",
