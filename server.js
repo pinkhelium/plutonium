@@ -41,6 +41,16 @@ app.post('/init', function(request,response){
 
 	init_spawn.on('close', (code) => {
 		console.log(`child process exited with code ${code}`);
+		if(code==0){
+			response.send(0);
+		}
+		else {
+			response.send(1);
+		}
 	});
+
+	
+
+
 })
 

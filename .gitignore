@@ -3,3 +3,6 @@ dist
 .tmp
 .sass-cache
 bower_components
+plutonium.json
+plutonium.sublime-workspace
+projects
