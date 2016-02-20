@@ -23,7 +23,7 @@ angular.module('plutoniumApp')
   		$http({
   			method: 'POST',
   			url: 'http://localhost:8000/init',
-        data: $scope.project
+        	data: $scope.project
   		}).then(function success(response){
   			q.resolve();
   		}, function error(reponse){

@@ -23,7 +23,13 @@ app.post('/build',function(request,response){
 
 app.post('/init', function(request,response){
 	console.log('Creating Project');
-	const init_spawn = spawn('./scripts/init.sh', ['test_name', 'test_url'])
+	//console.log(request.body);
+	var project_name = request.body.name;
+	var project_repo_url = request.body.repo_url;
+
+	console.log(project_name);
+	console.log(project_repo_url);
+	const init_spawn = spawn('./scripts/init.sh', [project_name, project_repo_url]);
 
 	init_spawn.stdout.on('data', (data) => {
 		console.log(`stdout: ${data}`);
