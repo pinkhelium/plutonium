@@ -63,7 +63,8 @@ app.post('/function', function(request,response){
 	var user_code_file_content = request.body.code;
 
 	var createCodeFile = function(){
-		fs.writeFile(user_code_file, user_code_file_content, checkCode)
+		fs.appendFile("projects/" + project_name +  "/" + user_code_file, user_code_file_content, checkCode);
+		console.log(user_code_file_content);
 	}
 
 	var checkCode = function(err, data){
@@ -71,7 +72,7 @@ app.post('/function', function(request,response){
 			console.log("oopsies");
 		}
 		else{
-			const function_spawn = spawn('python3.4', ['/scripts/code.py', '-p', project_name, '-a',api_code_file,'-u', user_code_file, '-f',function_name, '-m',method_type, '-v',version_number]);
+			const function_spawn = spawn('./scripts/expose.sh', [project_name, api_code_file, user_code_file, function_name, method_type, version_number]);
 
 			function_spawn.stdout.on('data', (data) => {
 				console.log(`stdout: ${data}`);
