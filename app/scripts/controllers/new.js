@@ -16,8 +16,6 @@ angular.module('plutoniumApp')
       name: "function_name",
   	}
 
-
-
   	$scope.pauseDeploy = true;
   	$scope.endpointType = function(type){
   		$scope.data.endpointType = type;
