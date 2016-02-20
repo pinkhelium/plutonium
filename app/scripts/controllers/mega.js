@@ -15,6 +15,15 @@ angular.module('plutoniumApp')
       repo_url: ''
     };
 
+    // $scope.documentation = {
+      
+    // }
+
+    $scope.deployDetails = {
+      project_name: "",
+      type: "",
+    }
+
   	$scope.data = {
   		method_type: "Endpoint Type",
     	function_name: "FunctionName",
@@ -31,6 +40,10 @@ angular.module('plutoniumApp')
 
     $scope.$watch('data.function_name', function(){
       $scope.data.code = "def " + $scope.data.function_name + "(values):\n\t\'\'\'Describe Your Function Here!\'\'\'\n\t";
+    })
+
+    $scope.$watch('project.name', function(){
+      $scope.deployDetails.project_name = $scope.project.name;
     })
   	
 

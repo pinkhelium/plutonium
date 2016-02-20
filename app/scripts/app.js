@@ -31,6 +31,10 @@ angular
         controller: 'P2Ctrl',
         controllerAs: 'p2'
       })
+      .when('/deploy', {
+        templateUrl: 'views/deploy.html',
+        controller: 'DeployCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

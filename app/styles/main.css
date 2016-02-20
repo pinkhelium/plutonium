@@ -174,12 +174,20 @@ body {
 
 .sidebar {
   width: 18%;
-  background-color: #F82C7E;
+  background-color: #212121;
   height: 100%;
   position: fixed;
   overflow-y: auto;
   color: #FFF;
-  padding: 15px;
+  padding: 0;
+}
+
+.sidebar > li {
+  position: relative;
+  display: block;
+  margin-bottom: -1px;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  padding: 10px;
 }
 
 .content  {
@@ -189,6 +197,7 @@ body {
   position: fixed;
   overflow-y: auto;
   padding: 15px;
+  color: #212121 !important;
 }
 
 .structure, .structure ul {

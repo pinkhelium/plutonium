@@ -1,24 +1,22 @@
 <div class="wrapper">
-	<div class="sidebar">
-		<h3 class="projectTitle"><em>{{project.name}}</em></h3>
-		<ul class="structure">
-			<li ng-repeat="(keyV,version) in project.documentation.versions">
-				version {{keyV}}
-				<ul>
-					<li ng-repeat="(keyF, function) in version">
+	<ul class="sidebar structure">
+		<li><h2>{{project.name}}</h2></li>
+		<li ng-repeat="(keyV,version) in documentation.versions">
+			Version {{keyV}}
+			<ul>
+				<li ng-repeat="(keyF, function) in version" style="">
 					{{keyF}}
-						<ul>
-							<li ng-repeat="(keyM, method) in function">
-								<a href="" ng-click="changeView('doc')" class="methodType">{{keyM}}</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-		</ul>
+					<ul>
+						<li ng-repeat="(keyM, method) in function">
+						<a href="" ng-click="changeView('doc')" class="methodType">{{keyM}}<div class="glyphicon glyphicon-chevron-right"></div></a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>	
+		<li><button class="btn btn-success" ng-click="newFunctionView()">Add Function</button></li>
+	</ul>
 
-		<button class="btn btn-default btn-md btn-block" ng-click="newFunctionView('func')">New Function</button>
-	</div>
 	<div class="content">
 		<table class="table table-hover" ng-show="showTable">
 			<tr>

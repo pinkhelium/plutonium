@@ -10,9 +10,9 @@
 angular.module('plutoniumApp')
   .controller('P2Ctrl', function ($scope,$http,$q,ngToast) {
 
-    $scope.project = { 
+    $scope.documentation = { 
         "name" : "vidserver",
-        "documentation": {
+        
             "versions": {
                 "1": {
                     "/watch": {
@@ -43,8 +43,9 @@ angular.module('plutoniumApp')
                     }
                 }
             }
-        }
+        
     };
+
 
     $scope.showTable = false;
     $scope.showNewFunction = false;

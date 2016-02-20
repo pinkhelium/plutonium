@@ -120,3 +120,8 @@ app.post('/function', function(request,response){
 	}
 	createCodeFile();
 })
+
+app.post('/deploy', function(request,response){
+	console.log(request.body);
+	response.send("Hi");
+})
