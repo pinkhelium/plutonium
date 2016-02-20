@@ -1,0 +1,15 @@
+{
+  "name": "pinkhelium",
+  "short_name": "pinkhelium",
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "images/logo_64.png",
+      "sizes": "64x63",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}
