@@ -2,7 +2,11 @@
 	margin-top:100px;
 }
 
-.ace_editor { height: 200px; }
+.off-top-small{
+	margin-top:20px;
+}
+
+.ace_editor { height: 300px; }
 
 .span-width{
 	width: 100%;
