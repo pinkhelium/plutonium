@@ -4,18 +4,18 @@ api_project_name=$1;
 remote_repo_url=$2;
 
 # HANDLE FILE OPERATIONS
-mkdir projects/$api_project_name;
-cd projects/$api_project_name;
+mkdir projects/$api_project_name || exit 1
+cd projects/$api_project_name || exit 1;
 
 # CREATE CONFIG FILE
 
 # GIT INIT
-git init;	
-git remote add origin $remote_repo_url;
+git init || exit 1;	
+git remote add origin $remote_repo_url || exit 1;
 
 # TOUCH PROJECT_NAME.PY
-touch $api_project_name.py;
-printf "import hug \n" >> $api_project_name.py
-git add . ;
-git commit -m "Initial Commit!";
-git push origin master;
+touch $api_project_name.py || exit 1;
+printf "import hug \n" >> $api_project_name.py || exit 1
+git add . || exit 1;
+git commit -m "Initial Commit!" || exit 1;
+git push --force --set-upstream origin master || exit 1;

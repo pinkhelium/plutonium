@@ -26,8 +26,10 @@ angular.module('plutoniumApp')
         // url: 'http://localhost:8000/init',
         	data: $scope.project
   		}).then(function success(response){
+        console.log(response);
   			q.resolve();
-  		}, function error(reponse){
+  		}, function error(response){
+        console.log(response);
   			q.reject();	
   		})
 
