@@ -10,10 +10,7 @@
 angular.module('plutoniumApp')
   .controller('MainCtrl', function ($scope,$location,$http,$q) {
 
-    $scope.project = {
-      name : '',
-      repo_url: ''
-    };
+    
 
   	$scope.initProject = function(){
       console.log("got data: ");
