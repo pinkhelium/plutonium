@@ -1,33 +1,38 @@
-<form name="createProject" ng-submit="go('/new')">
-	
-	<div class="form-group">
+
+<div class="row">
+	<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+		<form name="createProject" ng-submit="go('/new')">
 		
-		<label for="name">Name</label>
-		<input type="text" 
-			class="form-control" 
-			name="name" 
-			ng-model="project.name" 
-			placeholder="Give your project a unique name!" 
-			minlength="3"
-			maxlength="15" />
-		<span ng-show="createForm.name.$invalid && !createForm.name.$pristine">Project Name is required.</span>
+			<div class="form-group">
+				
+				<label for="name">Name</label>
+				<input type="text" 
+					class="form-control" 
+					name="name" 
+					ng-model="project.name" 
+					placeholder="Give your project a unique name!" 
+					minlength="3"
+					maxlength="15" />
+				<span ng-show="createForm.name.$invalid && !createForm.name.$pristine">Project Name is required.</span>
 
+			</div>
+
+			<div class="form-group">
+				
+				<label for="repo_url">Repository URL</label>
+				<input type="text" 
+					class="form-control" 
+					name="repo_url" 
+					ng-model="project.repo_url" 
+					placeholder="Repository URL"
+					value="http://github.com/"/>
+				<span ng-show="createForm.repo_url.$invalid && !createForm.repo_url.$pristine">URL is required.</span>
+
+			</div>
+			<button type="reset" class="btn btn-default">Clear</button>
+			<button type="submit" class="btn btn-primary"
+				ng-disabled="createProject.$invalid || createProject.$pristine || hasErrors">Submit</button>
+		</form>
 	</div>
-
-	<div class="form-group">
-		
-		<label for="repo_url">Repository URL</label>
-		<input type="text" 
-			class="form-control" 
-			name="repo_url" 
-			ng-model="project.repo_url" 
-			placeholder="Repository URL" />
-		<span ng-show="createForm.repo_url.$invalid && !createForm.repo_url.$pristine">URL is required.</span>
-
-	</div>
-	<button type="reset" class="btn btn-default">Clear</button>
-	<button type="submit" class="btn btn-primary"
-		ng-disabled="createProject.$invalid || createProject.$pristine || hasErrors">Submit</button>
-
-</form>
+</div>
 
