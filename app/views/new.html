@@ -22,7 +22,7 @@
 <div class="row off-top">
   <div class="col-md-10 col-md-offset-1">
     <div ui-ace="{
-  useWrapMode : true,
+  useWrapMode : false,
   showGutter: true,
   theme:'twilight',
   mode: 'python'}" ng-model="data.code"></div>
@@ -40,4 +40,8 @@
 
 <pre style="margin-top: 50px">
 {{data|json}}
+</pre>
+
+<pre>
+{{dataParent|json}}
 </pre>

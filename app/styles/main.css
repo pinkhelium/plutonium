@@ -9,6 +9,11 @@
   font-family: 'Roboto', sans-serif;
 }
 
+h1 {
+  text-transform: uppercase;
+  color: #FF0074;
+}
+
 body {
   padding: 0;
   background-color: #F4F3F3;
@@ -147,30 +152,9 @@ body {
   background-color: #FFFFFF;
 }
 
-
-#wrapper {
-  padding-left: 250px;
+.repo_url_small {
+  color: #999;
+  font-weight: 400;
+  font-size: 0.35em;
+  text-transform: lowercase;
 }
-
-#sidebar-wrapper {
-    z-index: 1000;
-    position: fixed;
-    height: 100%;
-    width: 300px;
-    overflow-y: auto;
-}
-
-/*#sidebar-wrapper {
-    z-index: 1000;
-    position: fixed;
-    left: 250px;
-    width: 0;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background: #000;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}*/
