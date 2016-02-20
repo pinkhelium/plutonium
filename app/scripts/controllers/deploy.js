@@ -10,7 +10,8 @@
 angular.module('plutoniumApp')
   .controller('DeployCtrl', function ($scope,$location,$q,$http) {
     
-  	$scope.deploy = function(){
+  	$scope.deploy = function(type){
+  		$scope.deployDetails.type = type;
   		var promise = $scope.sendDeployDetails();
   		promise.then(function(){
   			$location.path('/project');
