@@ -12,16 +12,16 @@ angular.module('plutoniumApp')
     
   	$scope.data = {
   		endpointType: "Endpoint Type"
-  	}
+  	};
 
   	$scope.pauseDeploy = true;
   	$scope.endpointType = function(type){
   		$scope.data.endpointType = type;
-  	}
+  	};
 
   	$scope.buildFunction = function(){
   		$scope.pauseDeploy = $scope.sendData();
-  	}
+  	};
 
   	$scope.sendData = function(){
   		var deferred = $q.defer();
@@ -34,7 +34,7 @@ angular.module('plutoniumApp')
   			deferred.resolve(false);
   		}, function error(response){
   			deferred.resolve(true);
-  		})
+  		});
 
   		return deferred.promise;
   	}
