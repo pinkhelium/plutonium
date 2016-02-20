@@ -23,6 +23,8 @@ angular.module('plutoniumApp')
       code: "def functionName(values):\n\t"
   	}
 
+    $scope.pauseDeploy = true;
+
   	$scope.$watch('project.name', function(){
   		$scope.data.project_name = $scope.project.name;
   	})

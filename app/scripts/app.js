@@ -26,15 +26,7 @@ angular
         templateUrl: 'views/landing.html',
         controller: 'MainCtrl'
       })
-      .when('/new', {
-        templateUrl: 'views/new.html',
-        controller: 'NewCtrl'
-      })
       .when('/project', {
-        templateUrl: 'views/project.html',
-        controller: 'ProjectCtrl'
-      })
-      .when('/p2', {
         templateUrl: 'views/p2.html',
         controller: 'P2Ctrl',
         controllerAs: 'p2'
