@@ -10,13 +10,6 @@
 angular.module('plutoniumApp')
   .controller('NewCtrl', function ($scope,$http,$q) {
     
-  	$scope.data = {
-  		method_type: "Endpoint Type",
-      name: 'Project1',
-      code: "",
-      function_name: "function_name",
-      version_number: 1
-  	}
 
   	$scope.pauseDeploy = true;
 
@@ -33,7 +26,7 @@ angular.module('plutoniumApp')
   		console.log($scope.data)
   		$http({
   			method: 'POST',
-  			url: 'http://localhost:8000/build',
+  			url: 'http://localhost:8000/function',
   			data: $scope.data
   		}).then(function success(response){
   			deferred.resolve(false);
@@ -44,8 +37,6 @@ angular.module('plutoniumApp')
   		return deferred.promise;
   	}
 
-    $scope.$watch('data.function_name', function(){
-      $scope.data.code = "def " + $scope.data.function_name + "(values): \n";
-    })
+    
 
   });
