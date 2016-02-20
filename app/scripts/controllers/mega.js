@@ -28,7 +28,7 @@ angular.module('plutoniumApp')
   	})
 
     $scope.$watch('data.function_name', function(){
-      $scope.data.code = "def " + $scope.data.function_name + "(values):\n\t";
+      $scope.data.code = "def " + $scope.data.function_name + "(values):\n\t\'\'\'Describe Your Function Here!\'\'\'\n\t";
     })
   	
 

@@ -45,10 +45,10 @@ app.post('/init', function(request,response){
 		console.log(`child process exited with code ${code}`);
 		console.log("***********************************************************************************");	
 		if(code==0){
-			response.send(0);
+			response.send("0");
 		}
 		else {
-			response.send(1);
+			response.send("1");
 		}
 	});
 })
@@ -72,6 +72,11 @@ app.post('/function', function(request,response){
 	var checkCode = function(err, data){
 		if(err){
 			console.log("oopsies");
+			returnValue = {
+				value: "1"
+			}
+			response.send(true);
+			//true means it failed.
 		}
 		else{
 			const function_spawn = spawn('./scripts/expose.sh', [project_name, api_code_file, user_code_file, function_name, method_type, version_number]);
@@ -103,10 +108,11 @@ app.post('/function', function(request,response){
 					console.log("***********************************************************************************");	
 
 					if(code==0){
-						response.send(0);
+						response.send(false);
+						//false means it didn't fail
 					}
 					else {
-						response.send(1);
+						response.send(true);
 					}
 				});
 			});
