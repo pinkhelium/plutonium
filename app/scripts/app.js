@@ -33,6 +33,11 @@ angular
         templateUrl: 'views/project.html',
         controller: 'ProjectCtrl'
       })
+      .when('/p2', {
+        templateUrl: 'views/p2.html',
+        controller: 'P2Ctrl',
+        controllerAs: 'p2'
+      })
       .otherwise({
         redirectTo: '/'
       });
