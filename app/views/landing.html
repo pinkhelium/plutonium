@@ -1,5 +1,33 @@
-<div class="row">
-	<div class="col-md-12"> 
-		<button class="btn btn-success centeredButton" ng-click="go('/new')">New Project</button> 
+<form name="createProject" ng-submit="go('/new')">
+	
+	<div class="form-group">
+		
+		<label for="name">Name</label>
+		<input type="text" 
+			class="form-control" 
+			name="name" 
+			ng-model="project.name" 
+			placeholder="Give your project a unique name!" 
+			minlength="3"
+			maxlength="15" />
+		<span ng-show="createForm.name.$invalid && !createForm.name.$pristine">Project Name is required.</span>
+
 	</div>
-</div>
+
+	<div class="form-group">
+		
+		<label for="repo_url">Repository URL</label>
+		<input type="text" 
+			class="form-control" 
+			name="repo_url" 
+			ng-model="project.repo_url" 
+			placeholder="Repository URL" />
+		<span ng-show="createForm.repo_url.$invalid && !createForm.repo_url.$pristine">URL is required.</span>
+
+	</div>
+	<button type="reset" class="btn btn-default">Clear</button>
+	<button type="submit" class="btn btn-primary"
+		ng-disabled="createProject.$invalid || createProject.$pristine || hasErrors">Submit</button>
+
+</form>
+
