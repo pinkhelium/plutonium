@@ -37,18 +37,26 @@
 	display: inline-block;
 	padding: 10px;
 	opacity: 0.3;
+	filter: grayscale(1);
 }
 
 .langs > li.active{
 	opacity: 1 !important;
+	filter: grayscale(0);
 }
 
 .create {
 	width: 200px;
 	height: 50px;
-	margin: 50px;
 	background-color: #FF0074; 
 	color: #FFFFFF;
+	border: 0px !important;
+
+	margin-top: 50px; 
+}
+
+.create:hover, .create:active, .create:focus {
+	background-color: #FF0074 !important; 
 }
 
 #title {
