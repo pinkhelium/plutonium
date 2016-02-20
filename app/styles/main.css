@@ -164,3 +164,29 @@ body {
 {
   font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace !important;
 }
+
+.wrapper {
+  width: 100%;
+  padding: 0;
+  margin-left: -15px;
+  margin-top: -20px;
+}
+
+.sidebar {
+  width: 18%;
+  background-color: #F82C7E;
+  height: 100%;
+  position: fixed;
+  overflow-y: auto;
+  color: #FFF;
+  padding: 15px;
+}
+
+.content  {
+  left: 18%;
+  width: 82%;
+  height: 100%;
+  position: fixed;
+  overflow-y: auto;
+  padding: 15px;
+}
