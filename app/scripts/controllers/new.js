@@ -18,7 +18,12 @@ angular.module('plutoniumApp')
   	};
 
   	$scope.buildFunction = function(){
-  		$scope.pauseDeploy = $scope.sendData();
+  		var promise = $scope.sendData();
+      promise.then(function(response){
+        console.log(response);
+        $scope.pauseDeploy = response;
+        console.log($scope.pauseDeploy);
+      })
   	};
 
   	$scope.sendData = function(){
@@ -29,9 +34,11 @@ angular.module('plutoniumApp')
   			url: 'http://localhost:8000/function',
   			data: $scope.data
   		}).then(function success(response){
-  			deferred.resolve(false);
+        //console.log(response);
+  			deferred.resolve(response.data);
   		}, function error(response){
-  			deferred.resolve(true);
+        //console.log(response);
+  			deferred.resolve(response.data);
   		});
 
   		return deferred.promise;

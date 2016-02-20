@@ -17,15 +17,19 @@ angular.module('plutoniumApp')
 
   	$scope.data = {
   		method_type: "Endpoint Type",
-      	function_name: "function_name",
-      	version_number: 1,
-      	project_name: $scope.project.name
+    	function_name: "FunctionName",
+    	version_number: 1,
+    	project_name: $scope.project.name,
+      code: "def functionName(values):\n\t"
   	}
 
   	$scope.$watch('project.name', function(){
   		$scope.data.project_name = $scope.project.name;
   	})
 
+    $scope.$watch('data.function_name', function(){
+      $scope.data.code = "def " + $scope.data.function_name + "(values):\n\t\'\'\'Describe Your Function Here!\'\'\'\n\t";
+    })
   	
 
   });
