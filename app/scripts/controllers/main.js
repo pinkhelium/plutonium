@@ -11,8 +11,8 @@ angular.module('plutoniumApp')
   .controller('MainCtrl', function ($scope,$location,$http,$q) {
 
     $scope.project = {
-      name : 'YOLO',
-      repo_url: 'http://github.com/'
+      name : '',
+      repo_url: ''
     };
 
   	$scope.initProject = function(){
