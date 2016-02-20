@@ -19,8 +19,8 @@ angular.module('plutoniumApp')
 
   		$http({
   			method: 'POST',
-  			url: 'http://noble.localtunnel.me/init',
-        // url: 'http://localhost:8000/init',
+  			//url: 'http://noble.localtunnel.me/init',
+        url: 'http://localhost:8000/init',
         	data: $scope.project
   		}).then(function success(response){
         console.log(response);
@@ -33,8 +33,35 @@ angular.module('plutoniumApp')
   		return q.promise;
   	}
 
+    $scope.openProject = function(){
+
+      var q = $q.defer();
+
+      $http({
+        method: 'GET',
+        url: endpoint,
+        data: $scope.project.name
+      }).then(function success(response){
+        q.resolve(response.data);
+      }, function error(response){
+        q.reject(response.data);
+      })
+
+      return q.promise;
+    }
+
     $scope.go = function(path){
-    	$scope.initProject();
-    	$location.path(path);
+    	var promise = $scope.initProject();
+      promise.then(function(){
+        $location.path(path);
+      })
+    };
+
+    $scope.goAndPopulate = function(path){
+      var promise = $scope.openProject();
+      promise.then(function(response){
+        $scope.documentation = response;
+        $location.path(path);
+      })
     }
   });

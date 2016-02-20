@@ -17,7 +17,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.ace'
+    'ui.ace',
+    'ngToast'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -25,18 +26,25 @@ angular
         templateUrl: 'views/landing.html',
         controller: 'MainCtrl'
       })
-      .when('/new', {
-        templateUrl: 'views/new.html',
-        controller: 'NewCtrl'
-      })
       .when('/project', {
-        templateUrl: 'views/project.html',
-        controller: 'ProjectCtrl'
+        templateUrl: 'views/p2.html',
+        controller: 'P2Ctrl',
+        controllerAs: 'p2'
+      })
+      .when('/deploy', {
+        templateUrl: 'views/deploy.html',
+        controller: 'DeployCtrl'
       })
       .otherwise({
         redirectTo: '/'
       });
   })
+  .config(['ngToastProvider', function(ngToast) {
+    ngToast.configure({
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center',
+    })
+  }])
   .directive("centered", function() {
   return {
     restrict : "ECA",

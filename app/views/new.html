@@ -1,47 +1,45 @@
-<div class="row off-top">
-  <div class="col-md-2">
-    <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle span-width" type="button" id="dropdownMenu1" data-toggle="dropdown">
-        {{data.method_type | uppercase}}
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a ng-click="endpointType('get')">GET</a></li>
-        <li><a ng-click="endpointType('post')">POST</a></li>
-        <li><a ng-click="endpointType('delete')">DELETE</a></li>
-      </ul>
+<div class="card card-2">
+  <div class="row off-top-small">
+    <div class="col-md-2">
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle span-width pull-right" type="button" id="dropdownMenu1" data-toggle="dropdown">
+          {{data.method_type | uppercase}}
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a ng-click="endpointType('get')">GET</a></li>
+          <li><a ng-click="endpointType('post')">POST</a></li>
+          <li><a ng-click="endpointType('delete')">DELETE</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <input type="text" placeholder="Function Name" class="form-control" ng-model="data.function_name">
+    </div>
+    <div class="col-md-2">
+      <input type="text" placeholder="Version" class="form-control" ng-model="data.version_number">
     </div>
   </div>
-  <div class="col-md-8">
-    <input type="text" placeholder="Function Name" class="form-control" ng-model="data.function_name">
+  <div class="row off-top-small">
+    <div class="col-md-12">
+      <div ui-ace="{
+    useWrapMode : false,
+    showGutter: true,
+    theme:'twilight',
+    mode: 'python'}" ng-model="data.code"></div>
+    </div>
   </div>
-  <div class="col-md-2">
-    <input type="text" placeholder="Version" class="form-control" ng-model="data.version_number">
-  </div>
-</div>
-<div class="row off-top">
-  <div class="col-md-10 col-md-offset-1">
-    <div ui-ace="{
-  useWrapMode : false,
-  showGutter: true,
-  theme:'twilight',
-  mode: 'python'}" ng-model="data.code"></div>
-  </div>
-</div>
 
-<div class="row off-top">
-  <div class="col-md-2 col-md-offset-9 ">
-    <button class="btn btn-success" ng-click="buildFunction()">Build</button>
-    <button class="btn btn-danger" ng-disabled="pauseDeploy">Deploy</button>
+  <div class="row off-top-small">
+    <div class="col-md-2 col-md-offset-9 pull-right">
+      <button class="btn btn-success" ng-click="buildFunction()">Build</button>
+      <button class="btn btn-danger" ng-disabled="pauseDeploy">Deploy</button>
+    </div>
+  </div>
+  <div>
+    <toast></toast>
   </div>
 </div>
 
 
 
-<pre style="margin-top: 50px">
-{{data|json}}
-</pre>
-
-<pre>
-{{dataParent|json}}
-</pre>
