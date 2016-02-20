@@ -11,8 +11,12 @@ angular.module('plutoniumApp')
   .controller('NewCtrl', function ($scope,$http,$q) {
     
   	$scope.data = {
-  		endpointType: "Endpoint Type"
-  	};
+  		endpointType: "Endpoint Type",
+      code: "",
+      name: "function_name",
+  	}
+
+
 
   	$scope.pauseDeploy = true;
   	$scope.endpointType = function(type){
@@ -38,5 +42,9 @@ angular.module('plutoniumApp')
 
   		return deferred.promise;
   	}
+
+    $scope.$watch('data.name', function(){
+      $scope.data.code = "def " + $scope.data.name + "(values): \n\t";
+    })
 
   });
