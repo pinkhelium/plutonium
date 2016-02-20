@@ -62,15 +62,19 @@ app.post('/function', function(request,response){
 	var user_code_file_content = request.body.code;
 
 	var createCodeFile = function(checkCode){
-		const create_spawn = spawn('echo',['-e',user_code_file_content,'>',user_code_file]);
+		const create_codefile_spawn = spawn('./scripts/create_code_file.sh', [user_code_file_content, user_code_file]);
 
-		create_spawn.stdout.on('data', (data) => {
+		create_codefile_spawn.stdout.on('data', (data) => {
 			console.log(`stdout: ${data}`);
 		});
 
-		create_spawn.stderr.on('data', (data) => {
-			console.log(`stderr)
-		})
+		create_codefile_spawn.stderr.on('data', (data) => {
+			console.log(`stderr: ${data}`);
+		});
+
+		create_codefile_spawn.on('close', (code) => {
+			console.log(`child process exited with code ${code}`);
+		});
 	}
 
 	var checkCode = function(err, data){
@@ -90,12 +94,6 @@ app.post('/function', function(request,response){
 
 			function_spawn.on('close', (code) => {
 				console.log(`child process exited with code ${code}`);
-				if(code==0){
-					response.send(0);
-				}
-				else {
-					response.send(1);
-				}
 			});
 		}
 		
