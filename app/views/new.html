@@ -2,7 +2,7 @@
   <div class="col-md-2">
     <div class="dropdown">
       <button class="btn btn-default dropdown-toggle span-width" type="button" id="dropdownMenu1" data-toggle="dropdown">
-        {{data.endpointType | uppercase}}
+        {{data.method_type | uppercase}}
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
@@ -13,10 +13,10 @@
     </div>
   </div>
   <div class="col-md-8">
-    <input type="text" placeholder="Function Name" class="form-control" ng-model="data.name">
+    <input type="text" placeholder="Function Name" class="form-control" ng-model="data.function_name">
   </div>
   <div class="col-md-2">
-    <input type="text" placeholder="Version" class="form-control" ng-model="data.versionNumber">
+    <input type="text" placeholder="Version" class="form-control" ng-model="data.version_number">
   </div>
 </div>
 <div class="row off-top">
