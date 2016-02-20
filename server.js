@@ -63,7 +63,7 @@ app.post('/function', function(request,response){
 	var user_code_file_content = request.body.code;
 
 	var createCodeFile = function(checkCode){
-		fs.writeFile(user_code_file, function(err){
+		fs.writeFile(user_code_file, user_code_file_content, function(err){
 			if(err){
 				return console.log(err);
 			}
