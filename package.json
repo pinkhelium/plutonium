@@ -2,6 +2,7 @@
   "name": "plutonium",
   "version": "0.0.0",
   "dependencies": {
+    "body-parser": "^1.15.0",
     "cors": "^2.7.1",
     "express": "^4.13.4",
     "grunt-karma": "^0.12.1",
