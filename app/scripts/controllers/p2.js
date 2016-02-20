@@ -48,22 +48,18 @@ angular.module('plutoniumApp')
 
 
     $scope.showTable = false;
-    $scope.showNewFunction = false;
-    $scope.currentView = "empty";
+    $scope.showNewFunction = true;
     $scope.currentContents = {};
 
     $scope.changeView = function (what) {
-    	$scope.currentView = what;
     	$scope.showNewFunction = false;
     	$scope.showTable = true;
     	$scope.currentContents = this.method;
     };
 
     $scope.newFunctionView = function (what) {
-    	$scope.currentView = what;
     	$scope.showNewFunction = true;
-    	$scope.showTable = false;
- 
+    	$scope.showTable = false; 
     };
 
     
