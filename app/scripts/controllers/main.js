@@ -9,13 +9,21 @@
  */
 angular.module('plutoniumApp')
   .controller('MainCtrl', function ($scope,$location,$http,$q) {
-    
-  	$scope.createProject = function(){
+
+    $scope.project = {
+      name : '',
+      repo_url: ''
+    };
+
+  	$scope.initProject = function(){
+      console.log("got data: ");
+      console.log($scope.project);
   		var q = $q.defer();
 
   		$http({
   			method: 'POST',
-  			url: 'http://localhost:8000/init'
+  			url: 'http://localhost:8000/init',
+        data: $scope.project
   		}).then(function success(response){
   			q.resolve();
   		}, function error(reponse){
@@ -26,7 +34,7 @@ angular.module('plutoniumApp')
   	}
 
     $scope.go = function(path){
-    	$scope.createProject();
+    	$scope.initProject();
     	$location.path(path);
     }
   });
