@@ -16,10 +16,45 @@ app.listen(port);
 console.log("Server Running");
 console.log("***********************************************************************************");
 
+app.post('/openproject', function(request, response){
+	console.log(request);
+	var p_name = request.body.project_name;
+
+
+	const invisblehelper_spawn = spawn('./scripts/invisible_helper.sh', [p_name]);
+
+	invisblehelper_spawn.stdout.on('data', (data) => {
+		console.log(`stdout: ${data}`);
+	});
+
+	invisblehelper_spawn.stderr.on('data', (data) => {
+		console.log(`stderr: ${data}`);
+	});
+
+	invisblehelper_spawn.on('close', (code) => {
+		console.log(`invisible_helper process exited with code ${code}`);
+		console.log("***********************************************************************************");
+		if(code==0){
+			const inhelper_spawn = spawn('pwd');
+			fs.readFile('doc.json', function (err, data) {
+   				if (err) {
+       				return console.error(err);
+   				}
+   				documentation_struct = JSON.parse(data);
+				response.send({"fail": false, "doc": documentation_struct});
+				console.log(documentation_struct)
+				});	//false means it didn't fail
+		}
+		else {
+			response.send(true);
+		}
+	});
+});
+
 //app.use(express.static(__dirname + '/dist'));
 
 app.post('/build',function(request,response){
-	console.log('recv');
+	console.log('recv build');
 	console.log(request.body);
 })
 
@@ -120,8 +155,7 @@ app.post('/function', function(request,response){
 					invisblehelper_spawn.on('close', (code) => {
 						console.log(`invisible_helper process exited with code ${code}`);
 						console.log("***********************************************************************************");
-					});
-					if(code==0){
+						if(code==0){
 						const inhelper_spawn = spawn('pwd');
 						fs.readFile('doc.json', function (err, data) {
    							if (err) {
@@ -143,6 +177,30 @@ app.post('/function', function(request,response){
 					else {
 						response.send(true);
 					}
+
+					});
+					// if(code==0){
+					// 	const inhelper_spawn = spawn('pwd');
+					// 	fs.readFile('doc.json', function (err, data) {
+   		// 					if (err) {
+     //   							return console.error(err);
+   		// 					}
+   		// 					documentation_struct = JSON.parse(data);
+
+   		// 					if (!documentation_struct){
+   		// 						fs.readFile('doc.json', function (err, data) {
+   		// 							if (err) {
+     //   									return console.error(err);
+   		// 							}
+   		// 						console.log("GOT IT THE SECOND TIME!")
+   		// 						documentation_struct = JSON.parse(data)});
+   		// 					}
+					// 		response.send({"fail": false, "doc": documentation_struct});
+					// 	});	//false means it didn't fail
+					// }
+					// else {
+					// 	response.send(true);
+					// }
 				});
 			});
 		}

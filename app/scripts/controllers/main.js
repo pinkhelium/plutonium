@@ -38,9 +38,11 @@ angular.module('plutoniumApp')
       var q = $q.defer();
 
       $http({
-        method: 'GET',
-        url: 'http://localhost:8000/',
-        data: $scope.project.name
+        method: 'POST',
+        url: 'http://localhost:8000/openproject',
+        data: {
+          "project_name": $scope.project.name
+        }
       }).then(function success(response){
         q.resolve(response.data);
       }, function error(response){
@@ -53,15 +55,19 @@ angular.module('plutoniumApp')
     $scope.go = function(path){
     	var promise = $scope.initProject();
       promise.then(function(){
-        $scope.documentation = {};
+        //$scope.documentation = {};
         $location.path(path);
       })
     };
 
     $scope.goAndPopulate = function(path){
+      
       var promise = $scope.openProject();
       promise.then(function(response){
-        $scope.documentation = response;
+        console.log(response);
+        $scope.$parent.documentation = response.doc.documentation;
+        
+        console.log($scope.documentation);
         $location.path(path);
       })
     }

@@ -1,5 +1,6 @@
 #! /bin/bash
 rm -rf projects/amazon_cloud/api_framework/*
+echo "here"
 cp -R projects/$1 projects/amazon_cloud/api_framework/
 cd projects/amazon_cloud/api_framework/$1
 mv $1.py ../API.py 

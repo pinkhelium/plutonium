@@ -8,16 +8,16 @@
  * Controller of the plutoniumApp
  */
 angular.module('plutoniumApp')
-  .controller('MegaCtrl', function ($scope) {
+  .controller('MegaCtrl', function ($scope, $location) {
    
   	$scope.project = {
       name : '',
       repo_url: ''
     };
 
-    // $scope.documentation = {
+    $scope.documentation = {
       
-    // }
+    }
 
     $scope.deployDetails = {
       project_name: "",
@@ -37,6 +37,10 @@ angular.module('plutoniumApp')
   	$scope.$watch('project.name', function(){
   		$scope.data.project_name = $scope.project.name;
   	})
+
+    // $scope.$watch('documentation', function(){
+    //   console.log("here");
+    // })
 
     $scope.$watch('data.function_name', function(){
       $scope.data.code = "def " + $scope.data.function_name + "(values):\n\t\'\'\'Describe Your Function Here!\'\'\'\n\t";

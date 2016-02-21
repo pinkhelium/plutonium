@@ -10,42 +10,6 @@
 angular.module('plutoniumApp')
   .controller('P2Ctrl', function ($scope,$http,$q,ngToast,$location) {
 
-    // $scope.documentation = { 
-    //     "name" : "vidserver",
-        
-    //         "versions": {
-    //             "1": {
-    //                 "/watch": {
-    //                     "GET": {
-    //                         "usage": "Watch an example movie, streamed directly to you from pinkhelium",
-    //                         "examples": [
-    //                         "http://vidserver.localtunnel.me/v1/watch"
-    //                         ],
-    //                         "outputs": {
-    //                             "format": "mp4 formatted video",
-    //                             "content_type": "video/mp4"
-    //                         }
-    //                     }
-    //                 }
-    //             },
-    //             "2": {
-    //                 "/watch2": {
-    //                     "GET": {
-    //                         "usage": "Watch an example movie, streamed directly to you from pinkhelium",
-    //                         "examples": [
-    //                         "http://vidserver.localtunnel.me/v2/watch2"
-    //                         ],
-    //                         "outputs": {
-    //                             "format": "mp4 formatted video",
-    //                             "content_type": "video/mp4"
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-        
-    // };
-
     $scope.go = function(path){
         $location.path(path);
     }
@@ -78,8 +42,9 @@ angular.module('plutoniumApp')
         var promise = $scope.sendData();
       promise.then(function(response){
         console.log(response);
-        $scope.documentation = response.doc;
+        $scope.$parent.documentation = response.doc.documentation;
         $scope.pauseDeploy = response.false;
+        $scope.$apply();
         if($scope.pauseDeploy){
           ngToast.create({
             className: 'danger',
@@ -89,6 +54,7 @@ angular.module('plutoniumApp')
           });
         }
         else{
+            // $scope.documentation = response.doc;
           ngToast.create({
             className: 'success',
             content: 'Build Succeeded',
@@ -108,6 +74,7 @@ angular.module('plutoniumApp')
             url: 'http://localhost:8000/function',
             data: $scope.data
         }).then(function success(response){
+            console.log("sendDataSuccess");
         console.log(response);
             deferred.resolve(response.data);
         }, function error(response){
