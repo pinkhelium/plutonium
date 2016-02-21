@@ -1,8 +1,8 @@
 
 <div class="row">
-	<centered>
+<!-- 	<centered> -->
 		<div class="card card-2 col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 ">
-			<h1 id="title">Create A new project</h1>
+			<h1 id="title">API Project</h1>
 			<div class="lefty">
 				<form name="createProject" autocomplete="on">
 				
@@ -40,17 +40,18 @@
 						<li><img src="images/langs/ruby.png" alt="ruby"></li>
 					</ul>
 					<div class="pull-right">
+						<button class="btn btn-primary create"
+							ng-disabled="createProject.$invalid || createProject.$pristine || hasErrors"  ng-click="goAndPopulate('/project')">Open Project!</button>
 						<button type="submit" class="btn btn-primary create"
 							ng-disabled="createProject.$invalid || createProject.$pristine || hasErrors"  ng-click="go('/project')">Create Project!</button>
 
-						<button class="btn btn-primary create"
-							ng-disabled="createProject.$invalid || createProject.$pristine || hasErrors"  ng-click="goAndPopulate('/project')">Open Project!</button>
+						
 					</div>
 				</form>
 
 			</div>
 		</div>
-	</centered>
+	<!-- </centered> -->
 </div>
 
 
