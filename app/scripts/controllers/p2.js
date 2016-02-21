@@ -8,7 +8,7 @@
  * Controller of the plutoniumApp
  */
 angular.module('plutoniumApp')
-  .controller('P2Ctrl', function ($scope,$http,$q,ngToast) {
+  .controller('P2Ctrl', function ($scope,$http,$q,ngToast,$location) {
 
     $scope.documentation = { 
         "name" : "vidserver",
@@ -45,6 +45,10 @@ angular.module('plutoniumApp')
             }
         
     };
+
+    $scope.go = function(path){
+        $location.path(path);
+    }
 
 
     $scope.showTable = false;

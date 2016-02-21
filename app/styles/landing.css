@@ -57,5 +57,5 @@
 #title {
 	margin-bottom: 50px;
 	color:#FF0074;
-	text-transform: uppercase;
+	font-weight: 100 !important;
 }

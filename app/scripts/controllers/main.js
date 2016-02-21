@@ -21,7 +21,7 @@ angular.module('plutoniumApp')
   			method: 'POST',
   			//url: 'http://noble.localtunnel.me/init',
         url: 'http://localhost:8000/init',
-        	data: $scope.project
+      	data: $scope.project
   		}).then(function success(response){
         console.log(response);
   			q.resolve();
