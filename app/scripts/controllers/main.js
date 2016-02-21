@@ -19,8 +19,8 @@ angular.module('plutoniumApp')
 
   		$http({
   			method: 'POST',
-  			//url: 'http://noble.localtunnel.me/init',
-        url: 'http://localhost:8000/init',
+  			url: 'http://noble.localtunnel.me/init',
+        // url: 'http://localhost:8000/init',
       	data: $scope.project
   		}).then(function success(response){
         console.log(response);
@@ -39,7 +39,8 @@ angular.module('plutoniumApp')
 
       $http({
         method: 'POST',
-        url: 'http://localhost:8000/openproject',
+        // url: 'http://localhost:8000/openproject',
+        url: 'http://noble.localtunnel.me/openproject',
         data: {
           "project_name": $scope.project.name
         }
