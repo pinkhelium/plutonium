@@ -39,7 +39,7 @@ angular.module('plutoniumApp')
 
       $http({
         method: 'GET',
-        url: endpoint,
+        url: 'http://localhost:8000/',
         data: $scope.project.name
       }).then(function success(response){
         q.resolve(response.data);
@@ -53,6 +53,7 @@ angular.module('plutoniumApp')
     $scope.go = function(path){
     	var promise = $scope.initProject();
       promise.then(function(){
+        $scope.documentation = {};
         $location.path(path);
       })
     };
