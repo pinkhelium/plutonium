@@ -38,12 +38,12 @@ angular.module('plutoniumApp')
   		$scope.data.project_name = $scope.project.name;
   	})
 
-    // $scope.$watch('documentation', function(){
-    //   console.log("here");
-    // })
+    $scope.$watch('documentation', function(){
+      console.log("here");
+    })
 
     $scope.$watch('data.function_name', function(){
-      $scope.data.code = "def " + $scope.data.function_name + "(values):\n\t\'\'\'Describe Your Function Here!\'\'\'\n\t";
+      $scope.data.code = "\n\ndef " + $scope.data.function_name + "(values):\n\t\'\'\'Describe Your Function Here!\'\'\'\n\t";
     })
 
     $scope.$watch('project.name', function(){
