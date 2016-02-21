@@ -10,7 +10,7 @@ hug -f api_framework/API.py -p 3211 &
 pid=$!
 # sleep .1
 ps -e | grep "hug"
-# sleep 6
+sleep 6
 
 curl localhost:3211 | cat > ../../doc.json
 

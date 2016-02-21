@@ -128,6 +128,15 @@ app.post('/function', function(request,response){
        							return console.error(err);
    							}
    							documentation_struct = JSON.parse(data);
+
+   							if (!documentation_struct){
+   								fs.readFile('doc.json', function (err, data) {
+   									if (err) {
+       									return console.error(err);
+   									}
+   								console.log("GOT IT THE SECOND TIME!")
+   								documentation_struct = JSON.parse(data)});
+   							}
 							response.send({"fail": false, "doc": documentation_struct});
 						});	//false means it didn't fail
 					}
