@@ -71,7 +71,7 @@ angular.module('plutoniumApp')
         console.log($scope.data)
         $http({
             method: 'POST',
-            url: 'http://localhost:8000/function',
+            url: 'http://noble.localtunnel.me/function',
             data: $scope.data
         }).then(function success(response){
             console.log("sendDataSuccess");

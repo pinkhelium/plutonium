@@ -211,5 +211,37 @@ app.post('/function', function(request,response){
 app.post('/deploy', function(request,response){
 	console.log(request.body);
 
-	response.send("Hi");
+	//response.send("Hi");
+
+	var project_name = request.body.project_name;
+	var type = request.body.type;
+
+	if(type=="aws"){
+		const deploy_spawn = spawn('./scripts/deploy_amazon.sh', [project_name]);
+
+		deploy_spawn.stdout.on('data', (data) => {
+			console.log(`stdout: ${data}`);
+		});
+
+		deploy_spawn.stderr.on('data', (data) => {
+			console.log(`stderr: ${data}`);
+		});
+
+		deploy_spawn.on('close', (code) => {
+			console.log(`child process exited with code ${code}`);
+			console.log("***********************************************************************************");	
+			if(code==0){
+				response.send({fail:false});
+			}
+			else {
+				response.send({fail:true});
+			}
+		});
+	}
+	else if(type=="local"){
+
+	}
+	else if(type=="heroku"){
+
+	}
 })
