@@ -103,10 +103,10 @@ angular.module('plutoniumApp')
             url: 'http://localhost:8000/function',
             data: $scope.data
         }).then(function success(response){
-        //console.log(response);
+        console.log(response);
             deferred.resolve(response.data);
         }, function error(response){
-        //console.log(response);
+        console.log(response);
             deferred.resolve(response.data);
         });
 

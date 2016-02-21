@@ -65,7 +65,7 @@ app.post('/function', function(request,response){
 	var user_code_file_content = request.body.code;
 
 	var createCodeFile = function(){
-		fs.appendFile("projects/" + project_name +  "/" + user_code_file + ".py", user_code_file_content, checkCode);
+		fs.appendFile("projects/" + project_name +  "/" + user_code_file, user_code_file_content, checkCode);
 		console.log(user_code_file_content);
 	}
 
@@ -90,7 +90,7 @@ app.post('/function', function(request,response){
 			});
 
 			function_spawn.on('close', (code) => {
-				console.log(`child process exited with code ${code}`);
+				console.log(`expose process exited with code ${code}`);
 				console.log("***********************************************************************************");
 
 				const checkbuild_spawn =  spawn('./scripts/checkbuild.sh', [project_name]);
@@ -104,12 +104,32 @@ app.post('/function', function(request,response){
 				});
 
 				checkbuild_spawn.on('close', (code) => {
-					console.log(`child process exited with code ${code}`);
+					console.log(`checkbuild process exited with code ${code}`);
 					console.log("***********************************************************************************");	
 
+					const invisblehelper_spawn = spawn('./scripts/invisible_helper.sh', [project_name]);
+
+					invisblehelper_spawn.stdout.on('data', (data) => {
+						console.log(`stdout: ${data}`);
+					});
+
+					invisblehelper_spawn.stderr.on('data', (data) => {
+						console.log(`stderr: ${data}`);
+					});
+
+					invisblehelper_spawn.on('close', (code) => {
+						console.log(`invisible_helper process exited with code ${code}`);
+						console.log("***********************************************************************************");
+					});
 					if(code==0){
-						response.send(false);
-						//false means it didn't fail
+						const inhelper_spawn = spawn('pwd');
+						fs.readFile('doc.json', function (err, data) {
+   							if (err) {
+       							return console.error(err);
+   							}
+   							documentation_struct = JSON.parse(data);
+							response.send({"fail": false, "doc": documentation_struct});
+						});	//false means it didn't fail
 					}
 					else {
 						response.send(true);
@@ -123,5 +143,6 @@ app.post('/function', function(request,response){
 
 app.post('/deploy', function(request,response){
 	console.log(request.body);
+
 	response.send("Hi");
 })

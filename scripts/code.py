@@ -6,6 +6,7 @@ def add_func(pn, acf, ucf, fn, mn, vn):
 	# # main_project_file_path = + acf
 	# function_file_path = "~/Documents/pinkhelium/projects/" + pn + "/" + ucf
 
+	decorator_content = " "
 	# Prepare decorator content
 	decorator_content = "@hug." + mn + "('/" + fn + "', versions=" + vn + ")"
 
@@ -14,11 +15,10 @@ def add_func(pn, acf, ucf, fn, mn, vn):
 		function_content = function_file_object.read()
 	
 	# Write content to project file
-	with open(acf, 'a') as main_project_file_object:
+	with open(acf+'.py', 'a') as main_project_file_object:
 		main_project_file_object.write(decorator_content + "\n")
 		main_project_file_object.write(function_content + "\n")
 		main_project_file_object.write('\n')
-
 
 def main(argv):
 	# Define variables. Defining variables explicitly for easier readability.
