@@ -175,7 +175,7 @@ app.post('/function', function(request,response){
 						});	//false means it didn't fail
 					}
 					else {
-						response.send(true);
+						response.send({"fail":true,"doc": ""});
 					}
 
 					});

@@ -42,8 +42,8 @@ angular.module('plutoniumApp')
         var promise = $scope.sendData();
       promise.then(function(response){
         console.log(response);
-        $scope.$parent.documentation = response.doc.documentation;
-        $scope.pauseDeploy = response.false;
+        $scope.$parent.documentation = response.doc;
+        $scope.pauseDeploy = response.fail;
         $scope.$apply();
         if($scope.pauseDeploy){
           ngToast.create({
