@@ -1,14 +1,30 @@
 #!/bin/bash
 
-rm -rf projects/heroku_cloud/api_framework/*
-cp -R projects/$1 projects/heroku_cloud/api_framework/
-cd projects/heroku_cloud/api_framework/$1
-mv $1.py API.py
+rm -rf projects/heroku_cloud/$1/*
+cd projects/heroku_cloud
+mkdir $1
+cd $1
+git init
 
-touch Procfile requirements.txt
-echo "web: hug -f API.py" | cat > Procfile
-echo "hug --upgrade" | cat requirements.txt
+cp -R ../../$1 ../
 
-heroku create --buildpack git://github.com/heroku/heroku-buildpack-python.git
 
+# cp -R ../../projects/$1 .
+
+# mv $1.py API.py
+
+# touch Procfile requirements.txt
+touch Procfile conda-requirements.txt requirements.txt
+echo "python-3.4.3" | cat > runtime.txt
+
+echo "web: hug -f $1.py" | cat > Procfile
+echo "pip>=8.0.0" | cat > requirements.txt
+echo "hug>=1.9.9" | cat >> requirements.txt
+echo "hug" | cat > conda-requirements.txt
+
+heroku create $1
+heroku buildpacks:set heroku/python
+# heroku config:add BUILDPACK_URL=https://github.com/kennethreitz/conda-buildpack.git
+git add .
+git commit -m "buildpack"
 git push heroku master
