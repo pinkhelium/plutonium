@@ -8,13 +8,23 @@
  * Controller of the plutoniumApp
  */
 angular.module('plutoniumApp')
-  .controller('DeployCtrl', function ($scope,$location,$q,$http) {
+  .controller('DeployCtrl', function ($scope,$location,$q,$http,ngToast) {
     
   	$scope.deploy = function(type){
   		$scope.deployDetails.type = type;
   		var promise = $scope.sendDeployDetails();
-  		promise.then(function(){
-  			$location.path('/project');
+  		promise.then(function(response){
+        if(response.fail){
+          ngToast.create({
+            className: 'danger',
+            content: 'Build Failed',
+            dismissOnClick: true,
+            dismissButton: true,
+          });
+        }
+        else{
+          $location.path('/project');   
+        }
   		})
   	}
 
@@ -26,9 +36,9 @@ angular.module('plutoniumApp')
   			url: 'http://localhost:8000/deploy',
   			data: $scope.deployDetails
   		}).then(function success(response){
-  			q.resolve(response)
+  			q.resolve(response.data)
   		}, function error(response){
-  			q.reject(response);
+  			q.reject(response.data);
   		})
 
   		return q.promise;
